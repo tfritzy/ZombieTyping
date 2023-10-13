@@ -1,0 +1,9 @@
+E:\dev\TypingZombieDefense\.mono\temp\obj\Debug\TypingZombieDefense.csproj.AssemblyReference.cache
+E:\dev\TypingZombieDefense\.mono\temp\obj\Debug\TypingZombieDefense.GeneratedMSBuildEditorConfig.editorconfig
+E:\dev\TypingZombieDefense\.mono\temp\obj\Debug\TypingZombieDefense.AssemblyInfoInputs.cache
+E:\dev\TypingZombieDefense\.mono\temp\obj\Debug\TypingZombieDefense.AssemblyInfo.cs
+E:\dev\TypingZombieDefense\.mono\temp\obj\Debug\TypingZombieDefense.csproj.CoreCompileInputs.cache
+E:\dev\TypingZombieDefense\.mono\temp\bin\Debug\TypingZombieDefense.dll
+E:\dev\TypingZombieDefense\.mono\temp\bin\Debug\TypingZombieDefense.pdb
+E:\dev\TypingZombieDefense\.mono\temp\obj\Debug\TypingZombieDefense.dll
+E:\dev\TypingZombieDefense\.mono\temp\obj\Debug\TypingZombieDefense.pdb
