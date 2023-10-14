@@ -13,24 +13,46 @@ public class TypeBox : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		RenderElements();
+		GetTree().Root.Connect("size_changed", this, "RenderElements");
+	}
+
+	private void RenderElements()
+	{
 		var screenSize = GetViewport().Size;
 		int width = 100;
 		int labelHeight = 175;
 
-		editor = new TextEdit
+		if (editor != null)
 		{
-			RectPosition = new Vector2(screenSize.x / 2 - width / 2, labelHeight),
-			RectSize = new Vector2(500, 25),
-		};
-		AddChild(editor);
+			editor.RectPosition = new Vector2(screenSize.x / 2 - width / 2, labelHeight);
+			editor.RectSize = new Vector2(500, 25);
+		}
+		else
+		{
+			editor = new TextEdit
+			{
+				RectPosition = new Vector2(screenSize.x / 2 - width / 2, labelHeight),
+				RectSize = new Vector2(500, 25),
+			};
+			AddChild(editor);
+		}
 
-		label = new RichTextLabel
+		if (label != null)
 		{
-			RectPosition = new Vector2(screenSize.x / 2 - width / 2, 0),
-			RectSize = new Vector2(500, labelHeight),
-			BbcodeEnabled = true,
-		};
-		AddChild(label);
+			label.RectPosition = new Vector2(screenSize.x / 2 - width / 2, 0);
+			label.RectSize = new Vector2(500, labelHeight);
+		}
+		else
+		{
+			label = new RichTextLabel
+			{
+				RectPosition = new Vector2(screenSize.x / 2 - width / 2, 0),
+				RectSize = new Vector2(500, labelHeight),
+				BbcodeEnabled = true,
+			};
+			AddChild(label);
+		}
 
 		label.Text = Text;
 	}
