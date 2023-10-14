@@ -1,14 +1,33 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://Assets/GLTF format/tower_top.glb" type="PackedScene" id=1]
-[ext_resource path="res://Assets/GLTF format/battlement.glb" type="PackedScene" id=2]
-[ext_resource path="res://Assets/GLTF format/wallPaint_gate.glb" type="PackedScene" id=3]
-[ext_resource path="res://Assets/GLTF format/towerPaint_base.glb" type="PackedScene" id=4]
-[ext_resource path="res://Assets/GLTF format/tower_edge.glb" type="PackedScene" id=5]
-[ext_resource path="res://Assets/GLTF format/wallPaint.glb" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Castle/tower_top.glb" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Castle/battlement.glb" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Castle/wallPaint_gate.glb" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Castle/towerPaint_base.glb" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Castle/tower_edge.glb" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Castle/wallPaint.glb" type="PackedScene" id=6]
 [ext_resource path="res://ZombieSpawner.cs" type="Script" id=7]
 [ext_resource path="res://TypeBox.cs" type="Script" id=8]
 [ext_resource path="res://Soldier.cs" type="Script" id=9]
+[ext_resource path="res://Assets/Particles/muzzle_01.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Zombies/Zombie.tscn" type="PackedScene" id=11]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 1, 0.933333, 0.521569, 1 )
+albedo_texture = ExtResource( 10 )
+
+[sub_resource type="QuadMesh" id=2]
+
+[sub_resource type="Gradient" id=3]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [node name="Spatial" type="Spatial"]
 
@@ -105,3 +124,18 @@ width = 0.2
 height = 0.4
 depth = 0.2
 script = ExtResource( 9 )
+
+[node name="MuzzleFlash" type="CPUParticles" parent="Soldier"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.452687, 0.0587654, 0 )
+material_override = SubResource( 1 )
+emitting = false
+amount = 2
+lifetime = 0.1
+one_shot = true
+mesh = SubResource( 2 )
+gravity = Vector3( 0, 0, 0 )
+angle = -272.9
+color_ramp = SubResource( 3 )
+
+[node name="Zombie" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.294, 0, 1.864 )

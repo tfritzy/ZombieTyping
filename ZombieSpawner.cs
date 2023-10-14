@@ -3,12 +3,13 @@ using System;
 
 public class ZombieSpawner : Node
 {
-	public float SpawnInterval = 3.0f;
+	public float SpawnInterval = 1.0f;
 	private float LastSpawnTime = 0.0f;
+	private Spatial Zombie;
 
 	public override void _Ready()
 	{
-
+		Zombie = GD.Load<PackedScene>("res://Assets/Zombies/Zombie.tscn").Instance() as Spatial;
 	}
 
 	public override void _Process(float delta)
@@ -17,7 +18,7 @@ public class ZombieSpawner : Node
 		if (LastSpawnTime > SpawnInterval)
 		{
 			LastSpawnTime = 0.0f;
-			var zombie = new Zombie();
+			var zombie = Zombie.Duplicate() as Spatial;
 			GetTree().Root.AddChild(zombie);
 
 			float z = (float)GD.RandRange(-5, 5);

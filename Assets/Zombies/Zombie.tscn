@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Zombie.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Graveyard/GLB format/character-zombie.glb" type="PackedScene" id=2]
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "walk"
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=2]
+states/walk/node = SubResource( 1 )
+states/walk/position = Vector2( 291.279, 165.171 )
+"states/walk 2/node" = SubResource( 4 )
+"states/walk 2/position" = Vector2( 473.279, 165.911 )
+transitions = [ "walk", "walk 2", SubResource( 5 ), "walk 2", "walk", SubResource( 6 ) ]
+start_node = "walk"
+graph_offset = Vector2( -233.721, -27.7553 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+
+[node name="Zombie" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.22221, 0, 0 )
+script = ExtResource( 1 )
+
+[node name="character-zombie" parent="." instance=ExtResource( 2 )]
+transform = Transform( 5.28485e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, 5.28485e-08, 0, 0, 0 )
+
+[node name="AnimationTree" type="AnimationTree" parent="character-zombie"]
+tree_root = SubResource( 2 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 3 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="character-zombie"]

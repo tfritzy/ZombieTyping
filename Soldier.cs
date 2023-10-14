@@ -9,6 +9,7 @@ public class Soldier : CSGBox
     public Zombie Target;
 
     private int charctersStored;
+    private CPUParticles muzzleFlash;
 
     public override void _Ready()
     {
@@ -16,6 +17,8 @@ public class Soldier : CSGBox
         Height = .4f;
         Depth = .2f;
         AddToGroup("soldiers");
+        muzzleFlash = GetNode<CPUParticles>("MuzzleFlash");
+
     }
 
     public void OnCharacterComplete()
@@ -69,5 +72,9 @@ public class Soldier : CSGBox
 
         GD.Print("Pew! " + DamagePerShot + " damage to " + Target + " who has " + Target.Health + " health left.");
         Target.TakeDamage(DamagePerShot);
+
+        muzzleFlash.Restart();
+        muzzleFlash.Emitting = true;
+        muzzleFlash.Emitting = false;
     }
 }
